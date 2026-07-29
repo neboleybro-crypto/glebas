@@ -86,7 +86,7 @@
     display:flex;align-items:center;justify-content:center;
     font-family:var(--font-display);font-weight:800;color:#0A0A0C;font-size:15px;
   }
-  .brand-mark img{width:100%;height:100%;object-fit:cover;}
+  .brand-mark svg{width:18px;height:18px;color:#0A0A0C;}
   nav.links{display:flex;gap:26px;align-items:center;}
   nav.links a{font-size:13.5px;text-decoration:none;color:var(--muted);position:relative;padding:4px 0;transition:color .2s ease;text-transform:uppercase;letter-spacing:.04em;font-weight:600;}
   nav.links a:hover{color:var(--text);}
@@ -233,18 +233,29 @@
   /* ---------- CONTACT ---------- */
   .contact{background:var(--bg-soft);}
   .contact-box{
-    margin-top:0;background:#0A0A0C;color:var(--text);border:1px solid var(--line);padding:56px;
-    position:relative;overflow:hidden;text-align:center;
+    margin-top:0;background:#0A0A0C;color:var(--text);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
   }
   .contact-box .cb1{width:340px;height:340px;top:-140px;left:-100px;background:var(--punk);opacity:.28;animation:float-a 10s ease-in-out infinite;}
   .contact-box .cb2{width:300px;height:300px;bottom:-120px;right:-90px;background:var(--river);opacity:.24;animation:float-b 12s ease-in-out infinite;}
-  .contact-box > *{position:relative;z-index:1;}
-  .contact-box h2{font-size:clamp(23px,2.8vw,30px);color:var(--text);font-weight:800;text-transform:uppercase;}
-  .contact-box .lede{margin:14px auto 0;font-size:15.5px;color:var(--muted);line-height:1.7;max-width:44ch;}
-  .contact-note{
-    margin-top:28px;display:inline-flex;font-family:var(--font-mono);font-size:12.5px;color:var(--craft-deep);
-    border:1px dashed var(--craft);padding:10px 18px;
+  .contact-copy{position:relative;z-index:1;padding:56px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;}
+  .contact-photo{position:relative;overflow:hidden;min-height:340px;}
+  .contact-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05);position:absolute;inset:0;}
+  .contact-photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, #0A0A0C 0%, transparent 18%);
   }
+  .contact-box h2{font-size:clamp(23px,2.8vw,30px);color:var(--text);font-weight:800;text-transform:uppercase;}
+  .contact-box .lede{margin-top:14px;font-size:15.5px;color:var(--muted);line-height:1.7;max-width:42ch;}
+  .contact-tg{
+    margin-top:28px;display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);font-size:14px;font-weight:700;text-decoration:none;
+    background:linear-gradient(120deg, var(--craft), var(--craft-deep));color:#0A0A0C;
+    padding:13px 22px;border:2px solid var(--craft);transition:transform .2s ease, filter .2s ease;
+  }
+  .contact-tg:hover{transform:translateY(-2px);filter:brightness(1.06);}
+  .contact-tg svg{width:17px;height:17px;}
 
   footer{background:var(--bg);padding:32px 0 44px;border-top:1px solid var(--line);}
   .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;}
@@ -278,7 +289,10 @@
     .chapter-grid{grid-template-columns:1fr;}
     .observer-box{grid-template-columns:1fr;padding:36px 28px;text-align:center;}
     .observer-visual{order:-1;}
-    .contact-box{padding:40px 30px;}
+    .contact-box{grid-template-columns:1fr;}
+    .contact-photo{min-height:240px;order:-1;}
+    .contact-photo::after{background:linear-gradient(0deg, #0A0A0C 0%, transparent 25%);}
+    .contact-copy{padding:40px 30px;align-items:center;text-align:center;}
   }
   @media (max-width:680px){
     .nav-inner{padding:14px 20px;}
@@ -287,7 +301,7 @@
     .hero{padding:116px 0 0;}
     .hero .lede{font-size:15.5px;}
     .observer-box{padding:28px 22px;}
-    .contact-box{padding:32px 24px;}
+    .contact-copy{padding:32px 24px;}
     .nav-cta{display:none;}
   }
   @media (max-width:480px){
@@ -300,14 +314,19 @@
 
 <header class="site-nav">
   <div class="nav-inner">
-   
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </span>
+      Глеб Хеленюк
+    </div>
     <nav class="links">
       <a href="#story">История</a>
       <a href="#chapters">Три главы</a>
       <a href="#observer">OBSERVER</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a class="nav-cta" href="#contact">Написать</a>
+    <a class="nav-cta" href="https://telegram.me/glebas88" target="_blank" rel="noopener">Написать</a>
     <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -319,7 +338,7 @@
   <a href="#story">История</a>
   <a href="#chapters">Три главы</a>
   <a href="#observer">OBSERVER</a>
-  <a href="#contact">Написать →</a>
+  <a href="https://telegram.me/glebas88" target="_blank" rel="noopener">Написать →</a>
 </div>
 
 <section class="hero">
@@ -460,13 +479,21 @@
 </section>
 
 <section class="contact" id="contact">
-  <div class="wrap">
+  <div class="wrap" style="padding:0;max-width:1160px;">
     <div class="contact-box reveal">
       <div class="blob cb1"></div>
       <div class="blob cb2"></div>
-      <h2>Написать мне</h2>
-      <p class="lede">Если хотите связаться со мной, задать вопрос о моей истории или пригласить на интервью — оставьте контакт для связи.</p>
-      <div class="contact-note">укажите способ связи — телефон, e-mail или мессенджер</div>
+      <div class="contact-copy">
+        <h2>Написать мне</h2>
+        <p class="lede">Если хотите связаться со мной, задать вопрос о моей истории или пригласить на интервью — пишите в Telegram.</p>
+        <a class="contact-tg" href="https://telegram.me/glebas88" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.5L2.8 11.9c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.6.8 1.2.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.9l3.2-15.1c.4-1.4-.5-2-1.6-1.6z"/></svg>
+          Написать в Telegram
+        </a>
+      </div>
+      <div class="contact-photo">
+        <img src="https://sun9-13.vkuserphoto.ru/s/v1/ig2/XKDBNxWqvW6SHsOk5iTnxdpl8XHZsDujOSduKNr2W08zuHDzKcwixAzPVEFNpdHHYDUE_gm2jcxTQ_9x2t3jf_1V.jpg?quality=96&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x320,540x360,640x427,720x480,1080x720,1280x853,1440x960,1980x1320&from=bu&cs=1980x0" alt="Глеб Хеленюк">
+      </div>
     </div>
   </div>
 </section>
